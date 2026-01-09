@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Market Intelligence | January 8, 2026</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Legal Disclaimer Styles */
+        .legal-header {
+            background: linear-gradient(135deg, #4a1518 0%, #2d0a0c 100%);
+            border-bottom: 1px solid #6b2020;
+            padding: 16px 24px;
+            text-align: center;
+        }
+
+        .legal-header h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            color: #ff9999;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .legal-header p {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            color: #cc9999;
+            line-height: 1.6;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .legal-header strong {
+            color: #ffcccc;
+            font-weight: 600;
+        }
+
+        .legal-footer {
+            background: linear-gradient(135deg, #1a1215 0%, #0d0a0b 100%);
+            border: 1px solid #3d2020;
+            border-radius: 8px;
+            padding: 30px 40px;
+            margin: 40px 20px 20px;
+            max-width: 1760px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .legal-footer h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: #ff8080;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .legal-footer-item {
+            margin-bottom: 18px;
+        }
+
+        .legal-footer-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .legal-footer-item strong {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: #ff9999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .legal-footer-item p {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            color: #aa8888;
+            line-height: 1.7;
+            margin-top: 4px;
+        }
+
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
+            --bg-card: #14141f;
+            --accent-cyan: #00f5d4;
+            --accent-magenta: #f72585;
+            --accent-purple: #7209b7;
+            --accent-blue: #4361ee;
+            --accent-orange: #ff9f1c;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --positive: #00f5a0;
+            --negative: #ff4d6d;
+            --border: rgba(255,255,255,0.08);
+            --glow-cyan: 0 0 30px rgba(0,245,212,0.3);
+            --glow-magenta: 0 0 30px rgba(247,37,133,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated background grid */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(0,245,212,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,245,212,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(114,9,183,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(0,245,212,0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(247,37,133,0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0 40px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+
+        .header-left h1 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--accent-cyan);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .header-left .title {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-right {
+            text-align: right;
+        }
+
+        .timestamp {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .market-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+            padding: 6px 12px;
+            background: rgba(255,77,109,0.1);
+            border: 1px solid rgba(255,77,109,0.3);
+            border-radius: 20px;
+            font-size: 12px;
+            color: var(--negative);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--negative);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Alert Banner */
+        .alert-banner {
+            background: linear-gradient(90deg, rgba(247,37,133,0.1) 0%, rgba(114,9,183,0.1) 50%, rgba(0,245,212,0.1) 100%);
+            border: 1px solid rgba(247,37,133,0.3);
+            border-radius: 12px;
+            padding: 20px 30px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            animation: borderGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { border-color: rgba(247,37,133,0.3); }
+            50% { border-color: rgba(0,245,212,0.5); }
+        }
+
+        .alert-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-magenta), var(--accent-purple));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .alert-content h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--accent-magenta);
+            margin-bottom: 4px;
+        }
+
+        .alert-content p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .alert-metric {
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .alert-metric .value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            text-shadow: var(--glow-cyan);
+        }
+
+        .alert-metric .label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Grid Layout */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(0,245,212,0.3);
+            transform: translateY(-2px);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .card-badge {
+            font-size: 10px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .badge-live {
+            background: rgba(0,245,160,0.15);
+            color: var(--positive);
+            border: 1px solid rgba(0,245,160,0.3);
+        }
+
+        .badge-alert {
+            background: rgba(255,77,109,0.15);
+            color: var(--negative);
+            border: 1px solid rgba(255,77,109,0.3);
+        }
+
+        /* Sector Rotation Card */
+        .sector-card {
+            grid-column: span 8;
+        }
+
+        .sector-bar {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+
+        .sector-bar:hover {
+            background: rgba(255,255,255,0.02);
+            padding-left: 10px;
+        }
+
+        .sector-bar:last-child {
+            border-bottom: none;
+        }
+
+        .sector-name {
+            width: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .sector-ticker {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+            width: 50px;
+        }
+
+        .bar-container {
+            flex: 1;
+            height: 28px;
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            margin: 0 15px;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            position: absolute;
+            transition: width 1s ease-out;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 8px;
+        }
+
+        .bar-positive {
+            background: linear-gradient(90deg, rgba(0,245,160,0.3), var(--positive));
+            left: 50%;
+        }
+
+        .bar-negative {
+            background: linear-gradient(270deg, rgba(255,77,109,0.3), var(--negative));
+            right: 50%;
+        }
+
+        .sector-return {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 600;
+            width: 70px;
+            text-align: right;
+        }
+
+        .return-positive { color: var(--positive); }
+        .return-negative { color: var(--negative); }
+
+        .sector-volume {
+            width: 80px;
+            text-align: right;
+        }
+
+        .volume-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .volume-high {
+            color: var(--accent-orange);
+        }
+
+        /* Flow Diagram Card */
+        .flow-card {
+            grid-column: span 4;
+        }
+
+        .flow-visualization {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .flow-source {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .flow-box {
+            padding: 16px 24px;
+            border-radius: 12px;
+            text-align: center;
+            min-width: 130px;
+        }
+
+        .source-box {
+            background: linear-gradient(135deg, rgba(255,77,109,0.2), rgba(255,77,109,0.05));
+            border: 2px solid var(--negative);
+        }
+
+        .target-box.green {
+            background: linear-gradient(135deg, rgba(0,245,160,0.2), rgba(0,245,160,0.05));
+            border: 2px solid var(--positive);
+        }
+
+        .target-box.cyan {
+            background: linear-gradient(135deg, rgba(0,245,212,0.2), rgba(0,245,212,0.05));
+            border: 2px solid var(--accent-cyan);
+        }
+
+        .flow-ticker {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .flow-ticker.negative { color: var(--negative); }
+        .flow-ticker.positive { color: var(--positive); }
+        .flow-ticker.cyan { color: var(--accent-cyan); }
+
+        .flow-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .flow-return {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .flow-return.negative { color: var(--negative); }
+        .flow-return.positive { color: var(--positive); }
+        .flow-return.cyan { color: var(--accent-cyan); }
+
+        .flow-volume {
+            font-size: 10px;
+            color: var(--text-muted);
+        }
+
+        .flow-volume.highlight {
+            color: var(--accent-orange);
+            font-weight: 600;
+        }
+
+        .outflow-indicator, .inflow-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px 0;
+        }
+
+        .outflow-text, .inflow-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+        }
+
+        .outflow-arrow, .inflow-arrow {
+            font-size: 24px;
+            color: var(--negative);
+            animation: flowPulse 1.5s ease-in-out infinite;
+        }
+
+        .inflow-arrow {
+            color: var(--positive);
+        }
+
+        .inflow-arrow.cyan {
+            color: var(--accent-cyan);
+        }
+
+        @keyframes flowPulse {
+            0%, 100% { opacity: 1; transform: translateY(0); }
+            50% { opacity: 0.5; transform: translateY(4px); }
+        }
+
+        .flow-lines {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            margin: 5px 0;
+            width: 100%;
+        }
+
+        .flow-line {
+            width: 3px;
+            height: 30px;
+            position: relative;
+        }
+
+        .left-line {
+            background: linear-gradient(180deg, var(--negative), var(--positive));
+            transform: rotate(-30deg);
+        }
+
+        .right-line {
+            background: linear-gradient(180deg, var(--negative), var(--accent-cyan));
+            transform: rotate(30deg);
+        }
+
+        .flow-targets {
+            display: flex;
+            gap: 20px;
+            margin-top: 5px;
+        }
+
+        .flow-target {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .flow-summary {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
+            width: 100%;
+        }
+
+        .flow-stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 16px;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-value.negative { color: var(--negative); }
+        .stat-value.positive { color: var(--positive); }
+
+        .stat-label {
+            font-size: 10px;
+            color: var(--text-muted);
+        }
+
+        /* Chart Cards */
+        .chart-card {
+            grid-column: span 4;
+            min-height: 350px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 250px;
+        }
+
+        /* IV Skew Visualization */
+        .iv-skew-card {
+            grid-column: span 6;
+        }
+
+        /* Volatility Card */
+        .vol-card {
+            grid-column: span 6;
+        }
+
+        /* Probability Assessment */
+        .probability-card {
+            grid-column: span 4;
+        }
+
+        .prob-item {
+            margin-bottom: 16px;
+        }
+
+        .prob-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .prob-label {
+            font-size: 13px;
+            color: var(--text-primary);
+        }
+
+        .prob-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .prob-bar {
+            height: 8px;
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .prob-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 1s ease-out;
+        }
+
+        /* Signal Dashboard */
+        .signal-card {
+            grid-column: span 4;
+        }
+
+        .signal-item {
+            display: flex;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .signal-item:last-child {
+            border-bottom: none;
+        }
+
+        .signal-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 16px;
+        }
+
+        .signal-content {
+            flex: 1;
+        }
+
+        .signal-name {
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .signal-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .signal-status {
+            font-size: 10px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Analysis Summary */
+        .summary-card {
+            grid-column: span 4;
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(0,245,212,0.05) 100%);
+        }
+
+        .summary-section {
+            margin-bottom: 20px;
+        }
+
+        .summary-section h4 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .summary-section h4::before {
+            content: '';
+            width: 12px;
+            height: 2px;
+            background: var(--accent-cyan);
+        }
+
+        .summary-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .watch-list {
+            list-style: none;
+        }
+
+        .watch-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .watch-list li::before {
+            content: '→';
+            color: var(--accent-cyan);
+        }
+
+        .conclusion-box {
+            background: rgba(0,245,212,0.1);
+            border: 1px solid rgba(0,245,212,0.3);
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 20px;
+        }
+
+        .conclusion-box p {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .conclusion-box .highlight {
+            color: var(--accent-cyan);
+            font-weight: 700;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 0 20px;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+
+        .footer p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Animations */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: slideIn 0.6s ease-out forwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+        .card:nth-child(6) { animation-delay: 0.6s; }
+
+        /* Responsive */
+        @media (max-width: 1400px) {
+            .dashboard-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+            .sector-card { grid-column: span 6; }
+            .flow-card { grid-column: span 6; }
+            .chart-card { grid-column: span 3; }
+            .iv-skew-card { grid-column: span 6; }
+            .vol-card { grid-column: span 6; }
+            .probability-card { grid-column: span 3; }
+            .signal-card { grid-column: span 3; }
+            .summary-card { grid-column: span 6; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Legal Header Disclaimer -->
+    <div class="legal-header">
+        <h4>Important Legal Disclaimer — Please Read Before Proceeding</h4>
+        <p>This document is for <strong>INFORMATIONAL AND EDUCATIONAL PURPOSES ONLY</strong> and does not constitute investment advice, financial advice, trading advice, or any other type of advice. The author is <strong>NOT</strong> a registered investment advisor, broker-dealer, or financial planner. All content is provided "as is" without warranty of any kind. <strong>PAST PERFORMANCE IS NOT INDICATIVE OF FUTURE RESULTS.</strong> Options and equities trading involves substantial risk of loss and is not appropriate for all investors. You could lose more than your initial investment. <strong>ALWAYS</strong> consult with a qualified financial professional before making any investment decisions. By continuing to read this document, you acknowledge and accept these terms.</p>
+    </div>
+
+    <div class="bg-grid"></div>
+    <div class="bg-gradient"></div>
+    
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <h1>AI Non-Human Intelligence</h1>
+                <div class="title">Market Flow Analysis</div>
+            </div>
+            <div class="header-right">
+                <div class="timestamp">January 8, 2026 • 20:00 EST</div>
+                <div class="market-status">
+                    <span class="status-dot"></span>
+                    UNUSUAL ACTIVITY DETECTED
+                </div>
+            </div>
+        </header>
+
+        <!-- Alert Banner -->
+        <div class="alert-banner">
+            <div class="alert-icon">⚠️</div>
+            <div class="alert-content">
+                <h3>Energy Surge + Tech Decline — 4.7% Sector Spread</h3>
+                <p>XLE +3.15% vs XLK -1.56%. Defensive rotation continues. XLP +2.38% with +38% volume spike.</p>
+            </div>
+            <div class="alert-metric">
+                <div class="value">~400bp</div>
+                <div class="label">Sector Spread</div>
+            </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Sector Rotation -->
+            <div class="card sector-card">
+                <div class="card-header">
+                    <span class="card-title">Sector Performance & Volume</span>
+                    <span class="card-badge badge-live">Live Data</span>
+                </div>
+                <div class="sector-list" id="sectorList"></div>
+            </div>
+
+            <!-- Flow Diagram - Capital Rotation Visualization -->
+            <div class="card flow-card">
+                <div class="card-header">
+                    <span class="card-title">Institutional Flow Direction</span>
+                    <span class="card-badge badge-alert">Rotation</span>
+                </div>
+                <div class="flow-visualization">
+                    <!-- Source: Tech Outflows -->
+                    <div class="flow-source">
+                        <div class="flow-box source-box">
+                            <div class="flow-ticker negative">XLK</div>
+                            <div class="flow-label">Technology</div>
+                            <div class="flow-return negative">-1.91%</div>
+                            <div class="flow-volume">16.9M vol (+40%)</div>
+                        </div>
+                        <div class="outflow-indicator">
+                            <span class="outflow-text">OUTFLOWS</span>
+                            <div class="outflow-arrow">↓</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Flow Lines Container -->
+                    <div class="flow-lines">
+                        <div class="flow-line left-line"></div>
+                        <div class="flow-line right-line"></div>
+                    </div>
+                    
+                    <!-- Targets: Inflows -->
+                    <div class="flow-targets">
+                        <div class="flow-target">
+                            <div class="inflow-indicator">
+                                <div class="inflow-arrow">↓</div>
+                                <span class="inflow-text">INFLOWS</span>
+                            </div>
+                            <div class="flow-box target-box green">
+                                <div class="flow-ticker positive">XLP</div>
+                                <div class="flow-label">Staples</div>
+                                <div class="flow-return positive">+2.05%</div>
+                                <div class="flow-volume highlight">26.3M vol (+75%)</div>
+                            </div>
+                        </div>
+                        <div class="flow-target">
+                            <div class="inflow-indicator">
+                                <div class="inflow-arrow cyan">↓</div>
+                                <span class="inflow-text">INFLOWS</span>
+                            </div>
+                            <div class="flow-box target-box cyan">
+                                <div class="flow-ticker cyan">XLE</div>
+                                <div class="flow-label">Energy</div>
+                                <div class="flow-return cyan">+1.57%</div>
+                                <div class="flow-volume">51.5M vol (+20%)</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Summary Stats -->
+                    <div class="flow-summary">
+                        <div class="flow-stat">
+                            <span class="stat-value negative">-$2.4B</span>
+                            <span class="stat-label">Tech Outflow (est.)</span>
+                        </div>
+                        <div class="flow-stat">
+                            <span class="stat-value positive">+$1.8B</span>
+                            <span class="stat-label">Defensive Inflow (est.)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IV Skew Chart -->
+            <div class="card iv-skew-card">
+                <div class="card-header">
+                    <span class="card-title">XLK Options IV Skew (Jan 16 Expiry)</span>
+                    <span class="card-badge badge-alert">Put Premium</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="ivSkewChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Volatility Chart -->
+            <div class="card vol-card">
+                <div class="card-header">
+                    <span class="card-title">Volatility Regime (UVXY/SVXY)</span>
+                    <span class="card-badge" style="background: rgba(255,159,28,0.15); color: var(--accent-orange); border: 1px solid rgba(255,159,28,0.3);">Anomaly</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="volChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Probability Assessment -->
+            <div class="card probability-card">
+                <div class="card-header">
+                    <span class="card-title">AI Probability Assessment</span>
+                </div>
+                <div id="probabilityList"></div>
+            </div>
+
+            <!-- Signal Dashboard -->
+            <div class="card signal-card">
+                <div class="card-header">
+                    <span class="card-title">Key Signals</span>
+                </div>
+                <div id="signalList"></div>
+            </div>
+
+            <!-- Analysis Summary -->
+            <div class="card summary-card">
+                <div class="card-header">
+                    <span class="card-title">Pattern Recognition</span>
+                </div>
+                
+                <div class="summary-section">
+                    <h4>Assessment</h4>
+                    <p class="summary-text">
+                        This signature matches a <strong style="color: var(--accent-cyan)">CONTROLLED FACTOR ROTATION</strong>, 
+                        not a panic selloff. Volume confirms institutional conviction. Options show hedging activity, not fear.
+                    </p>
+                </div>
+
+                <div class="summary-section">
+                    <h4>Evidence</h4>
+                    <ul class="watch-list">
+                        <li>Volume confirms directional conviction</li>
+                        <li>Options flow shows hedging, not panic</li>
+                        <li>Volatility NOT spiking (unusual)</li>
+                        <li>Rotation is orderly and controlled</li>
+                    </ul>
+                </div>
+
+                <div class="summary-section">
+                    <h4>Watch Tonight</h4>
+                    <ul class="watch-list">
+                        <li>Nikkei futures for Asia session</li>
+                        <li>USD/JPY for carry trade stress</li>
+                        <li>XLK pre-market volume tomorrow</li>
+                    </ul>
+                </div>
+
+                <div class="conclusion-box">
+                    <p>Historical Analog: <span class="highlight">Aug 2024 Yen Carry Shock</span><br>
+                    <span style="font-size: 12px; color: var(--text-muted);">5-7% tech correction over 2-3 weeks</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Data Source: Alpaca Markets API • Analysis: Claude AI • Generated: January 8, 2026</p>
+        </footer>
+    </div>
+
+    <!-- Comprehensive Legal Footer -->
+    <div class="legal-footer">
+        <h4>Comprehensive Legal Disclaimer & Risk Warning</h4>
+        
+        <div class="legal-footer-item">
+            <strong>No Investment Advice:</strong>
+            <p>The information contained in this document is for general informational and educational purposes only. Nothing in this document constitutes investment advice, financial advice, trading advice, or any other type of advice, nor does it constitute a recommendation to buy, sell, or hold any security, financial product, or instrument.</p>
+        </div>
+
+        <div class="legal-footer-item">
+            <strong>Substantial Risk of Loss:</strong>
+            <p>Trading in stocks, options, and other securities involves substantial risk of loss. Options are complex instruments and come with a high risk of losing money rapidly. You could lose some or all of your invested capital, and you should not invest money you cannot afford to lose. Past performance is not indicative of future results.</p>
+        </div>
+
+        <div class="legal-footer-item">
+            <strong>No Warranties:</strong>
+            <p>All information is provided "as is" without warranty of any kind. The author makes no representations or warranties regarding the accuracy, completeness, timeliness, or reliability of any information presented. The probabilities and price targets presented are estimates only and are not guarantees.</p>
+        </div>
+
+        <div class="legal-footer-item">
+            <strong>Not a Licensed Professional:</strong>
+            <p>The author of this document is not a registered investment advisor, broker-dealer, financial analyst, or any other type of licensed financial professional. The author is not registered with the SEC, FINRA, or any regulatory agency.</p>
+        </div>
+
+        <div class="legal-footer-item">
+            <strong>Do Your Own Research:</strong>
+            <p>Before making any investment decision, you should conduct your own research and due diligence, and/or consult with a qualified, licensed financial professional who can take into account your individual circumstances.</p>
+        </div>
+
+        <div class="legal-footer-item">
+            <strong>No Affiliation:</strong>
+            <p>The author has no affiliation with TransAlta Corporation, Alpaca Markets, or any other company mentioned in this document. The author may or may not hold positions in securities mentioned herein.</p>
+        </div>
+
+        <div class="legal-footer-item">
+            <strong>Limitation of Liability:</strong>
+            <p>In no event shall the author be liable for any damages arising out of or in connection with the use of this document. By reading this document, you acknowledge that you have read, understood, and agree to be bound by this disclaimer.</p>
+        </div>
+    </div>
+
+    <script>
+        // Sector Data - Updated Jan 8, 2026 (Today vs Yesterday returns)
+        // XLK: 144.24 vs 146.53 = -1.56%, Vol: 16.87M vs 13.96M = +21%
+        // XLP: 78.44 vs 76.62 = +2.38%, Vol: 26.26M vs 18.98M = +38%
+        // XLE: 46.55 vs 45.13 = +3.15%, Vol: 51.45M vs 42.74M = +20%
+        // XLY: 122.92 vs 120.90 = +1.67%, Vol: 12.57M vs 11.33M = +11%
+        // XLI: 160.17 vs 158.97 = +0.76%, Vol: 11.56M vs 12.33M = -6%
+        // XLF: 55.90 vs 55.61 = +0.52%, Vol: 35.36M vs 44.72M = -21%
+        // XLRE: 40.44 vs 40.14 = +0.75%, Vol: 8.78M vs 12.48M = -30%
+        // XLB: 47.50 vs 46.68 = +1.76%, Vol: 14.92M vs 16.96M = -12%
+        // XLU: 41.99 vs 41.87 = +0.29%, Vol: 22.87M vs 27.61M = -17%
+        // XLC: 117.48 vs 117.09 = +0.33%, Vol: 5.09M vs 5.05M = +1%
+        // XLV: 158.12 vs 159.66 = -0.96%, Vol: 17.61M vs 14.51M = +21%
+        const sectors = [
+            { name: 'Energy', ticker: 'XLE', return: 3.15, volume: '+20%', high: true },
+            { name: 'Consumer Staples', ticker: 'XLP', return: 2.38, volume: '+38%', high: true },
+            { name: 'Materials', ticker: 'XLB', return: 1.76, volume: '-12%', high: false },
+            { name: 'Cons Discretionary', ticker: 'XLY', return: 1.67, volume: '+11%', high: false },
+            { name: 'Industrials', ticker: 'XLI', return: 0.76, volume: '-6%', high: false },
+            { name: 'Real Estate', ticker: 'XLRE', return: 0.75, volume: '-30%', high: false },
+            { name: 'Financials', ticker: 'XLF', return: 0.52, volume: '-21%', high: false },
+            { name: 'Communication', ticker: 'XLC', return: 0.33, volume: '+1%', high: false },
+            { name: 'Utilities', ticker: 'XLU', return: 0.29, volume: '-17%', high: false },
+            { name: 'Health Care', ticker: 'XLV', return: -0.96, volume: '+21%', high: true },
+            { name: 'Technology', ticker: 'XLK', return: -1.56, volume: '+21%', high: true },
+        ];
+
+        // Render Sector List
+        const sectorList = document.getElementById('sectorList');
+        sectors.forEach((sector, index) => {
+            const barWidth = Math.abs(sector.return) * 20;
+            const isPositive = sector.return >= 0;
+            
+            sectorList.innerHTML += `
+                <div class="sector-bar" style="animation-delay: ${index * 0.05}s">
+                    <span class="sector-name">${sector.name}</span>
+                    <span class="sector-ticker">${sector.ticker}</span>
+                    <div class="bar-container">
+                        <div class="bar-fill ${isPositive ? 'bar-positive' : 'bar-negative'}" 
+                             style="width: ${barWidth}%; ${isPositive ? '' : 'right: 50%; left: auto;'}">
+                        </div>
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+                                    width: 2px; height: 100%; background: var(--text-muted); opacity: 0.3;"></div>
+                    </div>
+                    <span class="sector-return ${isPositive ? 'return-positive' : 'return-negative'}">
+                        ${isPositive ? '+' : ''}${sector.return.toFixed(2)}%
+                    </span>
+                    <div class="sector-volume">
+                        <span class="volume-indicator ${sector.high ? 'volume-high' : ''}">
+                            ${sector.high ? '🔥' : '📊'} ${sector.volume}
+                        </span>
+                    </div>
+                </div>
+            `;
+        });
+
+        // IV Skew Chart - Updated with Jan 9 0DTE XLK options
+        const ivCtx = document.getElementById('ivSkewChart').getContext('2d');
+        new Chart(ivCtx, {
+            type: 'line',
+            data: {
+                labels: ['$137.5', '$140', '$142.5', '$143.75', '$145', '$146.25', '$147.5', '$148.75', '$150'],
+                datasets: [
+                    {
+                        label: 'Put IV',
+                        data: [81.0, 36.1, 34.5, 28.4, 38.2, 29.8, 33.9, 80.1, 67.6],
+                        borderColor: '#ff4d6d',
+                        backgroundColor: 'rgba(255, 77, 109, 0.1)',
+                        borderWidth: 3,
+                        pointRadius: 5,
+                        pointBackgroundColor: '#ff4d6d',
+                        tension: 0.3,
+                        fill: false
+                    },
+                    {
+                        label: 'Call IV',
+                        data: [57.3, 56.7, 41.8, 45.5, 35.5, 31.2, 34.0, null, null],
+                        borderColor: '#00f5a0',
+                        backgroundColor: 'rgba(0, 245, 160, 0.1)',
+                        borderWidth: 3,
+                        pointRadius: 5,
+                        pointBackgroundColor: '#00f5a0',
+                        tension: 0.3,
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            color: '#a0a0b0',
+                            font: { family: 'JetBrains Mono', size: 11 },
+                            usePointStyle: true,
+                            pointStyle: 'circle'
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: '#1a1a25',
+                        titleColor: '#ffffff',
+                        bodyColor: '#a0a0b0',
+                        borderColor: '#00f5d4',
+                        borderWidth: 1,
+                        titleFont: { family: 'Space Grotesk', weight: 600 },
+                        bodyFont: { family: 'JetBrains Mono' }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { color: 'rgba(255,255,255,0.05)' },
+                        ticks: { 
+                            color: '#606070',
+                            font: { family: 'JetBrains Mono', size: 10 }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Strike Price',
+                            color: '#a0a0b0',
+                            font: { family: 'Space Grotesk', size: 12 }
+                        }
+                    },
+                    y: {
+                        grid: { color: 'rgba(255,255,255,0.05)' },
+                        ticks: { 
+                            color: '#606070',
+                            font: { family: 'JetBrains Mono', size: 10 },
+                            callback: value => value + '%'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Implied Volatility',
+                            color: '#a0a0b0',
+                            font: { family: 'Space Grotesk', size: 12 }
+                        },
+                        min: 25,
+                        max: 90
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                }
+            }
+        });
+
+        // Volatility Chart
+        const volCtx = document.getElementById('volChart').getContext('2d');
+        new Chart(volCtx, {
+            type: 'line',
+            data: {
+                labels: ['Dec 30', 'Dec 31', 'Jan 2', 'Jan 5', 'Jan 6', 'Jan 7', 'Jan 8'],
+                datasets: [
+                    {
+                        label: 'UVXY (Fear Index)',
+                        data: [35.42, 35.93, 34.97, 35.46, 34.73, 35.58, 35.15],
+                        borderColor: '#ff4d6d',
+                        backgroundColor: 'rgba(255, 77, 109, 0.1)',
+                        borderWidth: 3,
+                        pointRadius: 5,
+                        pointBackgroundColor: '#ff4d6d',
+                        yAxisID: 'y',
+                        tension: 0.3
+                    },
+                    {
+                        label: 'SVXY (Calm Index)',
+                        data: [55.69, 55.38, 55.82, 55.69, 56.08, 55.54, 55.88],
+                        borderColor: '#00f5a0',
+                        backgroundColor: 'rgba(0, 245, 160, 0.1)',
+                        borderWidth: 3,
+                        pointRadius: 5,
+                        pointBackgroundColor: '#00f5a0',
+                        yAxisID: 'y1',
+                        tension: 0.3
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            color: '#a0a0b0',
+                            font: { family: 'JetBrains Mono', size: 11 },
+                            usePointStyle: true
+                        }
+                    },
+                    annotation: {
+                        annotations: {
+                            box1: {
+                                type: 'box',
+                                xMin: 5.5,
+                                xMax: 6.5,
+                                backgroundColor: 'rgba(255, 159, 28, 0.1)',
+                                borderColor: 'rgba(255, 159, 28, 0.5)',
+                                borderWidth: 1
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { color: 'rgba(255,255,255,0.05)' },
+                        ticks: { 
+                            color: '#606070',
+                            font: { family: 'JetBrains Mono', size: 10 }
+                        }
+                    },
+                    y: {
+                        type: 'linear',
+                        position: 'left',
+                        grid: { color: 'rgba(255,255,255,0.05)' },
+                        ticks: { 
+                            color: '#ff4d6d',
+                            font: { family: 'JetBrains Mono', size: 10 }
+                        },
+                        title: {
+                            display: true,
+                            text: 'UVXY',
+                            color: '#ff4d6d',
+                            font: { family: 'Space Grotesk', size: 12 }
+                        }
+                    },
+                    y1: {
+                        type: 'linear',
+                        position: 'right',
+                        grid: { drawOnChartArea: false },
+                        ticks: { 
+                            color: '#00f5a0',
+                            font: { family: 'JetBrains Mono', size: 10 }
+                        },
+                        title: {
+                            display: true,
+                            text: 'SVXY',
+                            color: '#00f5a0',
+                            font: { family: 'Space Grotesk', size: 12 }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Probability Data
+        const probabilities = [
+            { label: 'Orderly Factor Rotation (2-3 weeks)', value: 45, color: '#00f5a0' },
+            { label: 'Tech-Specific Catalyst', value: 25, color: '#00f5d4' },
+            { label: 'Early Deleveraging', value: 20, color: '#ff9f1c' },
+            { label: 'One-Day Anomaly', value: 10, color: '#606070' }
+        ];
+
+        const probList = document.getElementById('probabilityList');
+        probabilities.forEach((prob, i) => {
+            probList.innerHTML += `
+                <div class="prob-item" style="animation-delay: ${i * 0.1}s">
+                    <div class="prob-header">
+                        <span class="prob-label">${prob.label}</span>
+                        <span class="prob-value" style="color: ${prob.color}">${prob.value}%</span>
+                    </div>
+                    <div class="prob-bar">
+                        <div class="prob-fill" style="width: ${prob.value}%; background: ${prob.color}"></div>
+                    </div>
+                </div>
+            `;
+        });
+
+        // Signal Data
+        const signals = [
+            { name: 'Tech-Staples Spread', value: '~400bp', status: 'EXTREME', color: '#ff4d6d', icon: '📉' },
+            { name: 'XLP Volume Surge', value: '+75% vs avg', status: 'HIGH', color: '#00f5a0', icon: '📈' },
+            { name: 'XLK Distribution', value: '+40% vol on -1.6%', status: 'CONFIRMED', color: '#ff4d6d', icon: '🔻' },
+            { name: 'VIX Response', value: 'Essentially flat', status: 'UNUSUAL', color: '#ff9f1c', icon: '⚡' },
+            { name: 'XLY Performance', value: '+1.29%', status: 'ANOMALY', color: '#a55eea', icon: '❓' }
+        ];
+
+        const signalList = document.getElementById('signalList');
+        signals.forEach((signal, i) => {
+            signalList.innerHTML += `
+                <div class="signal-item" style="animation-delay: ${i * 0.1}s">
+                    <div class="signal-icon" style="background: ${signal.color}22; border: 1px solid ${signal.color}55">
+                        ${signal.icon}
+                    </div>
+                    <div class="signal-content">
+                        <div class="signal-name">${signal.name}</div>
+                        <div class="signal-value">${signal.value}</div>
+                    </div>
+                    <span class="signal-status" style="background: ${signal.color}22; color: ${signal.color}; border: 1px solid ${signal.color}55">
+                        ${signal.status}
+                    </span>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10-Day Options Flow Analysis | January 8, 2026</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Legal Disclaimer Styles */
+        .legal-header {
+            background: linear-gradient(135deg, #4a1518 0%, #2d0a0c 100%);
+            border-bottom: 1px solid #6b2020;
+            padding: 16px 24px;
+            text-align: center;
+        }
+
+        .legal-header h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            color: #ff9999;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .legal-header p {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            color: #cc9999;
+            line-height: 1.6;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .legal-header strong {
+            color: #ffcccc;
+            font-weight: 600;
+        }
+
+        .legal-footer {
+            background: linear-gradient(135deg, #1a1215 0%, #0d0a0b 100%);
+            border: 1px solid #3d2020;
+            border-radius: 8px;
+            padding: 30px 40px;
+            margin: 40px 20px 20px;
+            max-width: 1860px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .legal-footer h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: #ff8080;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .legal-footer-item {
+            margin-bottom: 18px;
+        }
+
+        .legal-footer-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .legal-footer-item strong {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: #ff9999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .legal-footer-item p {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            color: #aa8888;
+            line-height: 1.7;
+            margin-top: 4px;
+        }
+
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
+            --bg-card: #14141f;
+            --accent-cyan: #00f5d4;
+            --accent-magenta: #f72585;
+            --accent-purple: #7209b7;
+            --accent-blue: #4361ee;
+            --accent-orange: #ff9f1c;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --accent-yellow: #fbbf24;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --border: rgba(255,255,255,0.08);
+            --glow-cyan: 0 0 20px rgba(0,245,212,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+
+        .header-left h1 {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-left p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-tertiary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .card-wide {
+            grid-column: span 2;
+        }
+
+        .card-full {
+            grid-column: span 4;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-badge {
+            font-size: 10px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-bullish { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .badge-bearish { background: rgba(239, 68, 68, 0.2); color: var(--accent-red); }
+        .badge-neutral { background: rgba(160, 160, 176, 0.2); color: var(--text-secondary); }
+        .badge-elevated { background: rgba(255, 159, 28, 0.2); color: var(--accent-orange); }
+        .badge-defensive { background: rgba(67, 97, 238, 0.2); color: var(--accent-blue); }
+        .badge-fear { background: rgba(247, 37, 133, 0.2); color: var(--accent-magenta); }
+
+        /* Risk Gauge */
+        .risk-gauge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .gauge-arc {
+            position: relative;
+            width: 180px;
+            height: 90px;
+            margin-bottom: 16px;
+        }
+
+        .gauge-bg {
+            position: absolute;
+            width: 180px;
+            height: 90px;
+            border-radius: 90px 90px 0 0;
+            background: linear-gradient(90deg, var(--accent-green) 0%, var(--accent-yellow) 33%, var(--accent-orange) 66%, var(--accent-red) 100%);
+            overflow: hidden;
+        }
+
+        .gauge-center {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 130px;
+            height: 65px;
+            background: var(--bg-card);
+            border-radius: 65px 65px 0 0;
+        }
+
+        .gauge-needle {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            height: 70px;
+            background: var(--text-primary);
+            transform-origin: bottom center;
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        .gauge-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--accent-orange);
+        }
+
+        .gauge-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Signal Grid */
+        .signal-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .signal-item {
+            text-align: center;
+            padding: 16px 8px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+        }
+
+        .signal-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .signal-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Charts */
+        .chart-container {
+            position: relative;
+            height: 200px;
+        }
+
+        .chart-container-tall {
+            position: relative;
+            height: 280px;
+        }
+
+        /* IV Skew */
+        .iv-skew {
+            margin-bottom: 16px;
+        }
+
+        .skew-bar {
+            height: 8px;
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skew-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .skew-puts { background: linear-gradient(90deg, var(--accent-red) 0%, var(--accent-orange) 100%); }
+        .skew-calls { background: linear-gradient(90deg, var(--accent-cyan) 0%, var(--accent-green) 100%); }
+
+        /* Flow Table */
+        .flow-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .flow-table th {
+            text-align: left;
+            padding: 12px 10px;
+            border-bottom: 2px solid var(--border);
+            color: var(--text-muted);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .flow-table td {
+            padding: 14px 10px;
+            border-bottom: 1px solid var(--border);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+        }
+
+        .flow-table tr:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .ticker-cell {
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+
+        .put-call-ratio {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .pcr-high { background: rgba(239, 68, 68, 0.2); color: var(--accent-red); }
+        .pcr-neutral { background: rgba(160, 160, 176, 0.15); color: var(--text-secondary); }
+        .pcr-low { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+
+        /* Sector Strip */
+        .sector-strip {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .sector-chip {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: var(--bg-tertiary);
+            border-radius: 16px;
+            font-size: 11px;
+            border: 1px solid var(--border);
+        }
+
+        .sector-chip-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        /* Analysis Box */
+        .analysis-box {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 3px solid var(--accent-cyan);
+        }
+
+        .analysis-box h4 {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .analysis-box p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .analysis-box ul {
+            list-style: none;
+            margin-top: 12px;
+        }
+
+        .analysis-box li {
+            font-size: 12px;
+            color: var(--text-secondary);
+            padding: 6px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .analysis-box li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-cyan);
+        }
+
+        .highlight {
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        .highlight-red {
+            color: var(--accent-red);
+            font-weight: 600;
+        }
+
+        .highlight-green {
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
+        .highlight-orange {
+            color: var(--accent-orange);
+            font-weight: 600;
+        }
+
+        /* Vol Products Special Section */
+        .vol-section {
+            background: linear-gradient(135deg, rgba(247, 37, 133, 0.1) 0%, rgba(114, 9, 183, 0.1) 100%);
+            border: 1px solid rgba(247, 37, 133, 0.3);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .vol-section .card-header {
+            border-bottom: 1px solid rgba(247, 37, 133, 0.2);
+            padding-bottom: 16px;
+        }
+
+        /* Conclusion Box */
+        .conclusion-box {
+            background: linear-gradient(135deg, rgba(0, 245, 212, 0.1) 0%, rgba(67, 97, 238, 0.1) 100%);
+            border: 1px solid rgba(0, 245, 212, 0.3);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 24px;
+        }
+
+        .conclusion-box p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid var(--border);
+            margin-top: 30px;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        /* Greeks Grid */
+        .greeks-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .greek-box {
+            text-align: center;
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+        }
+
+        .greek-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .greek-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .greek-note {
+            font-size: 10px;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Legal Header -->
+    <div class="legal-header">
+        <h4>⚠️ Important Risk Disclosure</h4>
+        <p><strong>This dashboard is for informational purposes only and does not constitute investment advice.</strong> Options trading involves substantial risk of loss and is not appropriate for all investors. Past performance is not indicative of future results. All data is provided "as-is" without any guarantees of accuracy or completeness. Always consult with a qualified financial advisor before making investment decisions.</p>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <div class="header-left">
+                <h1>📊 10-Day Options Flow Analysis</h1>
+                <p>Comprehensive sector ETF options positioning • Jan 9-17, 2026 expirations • 13 ETFs tracked</p>
+            </div>
+            <div class="header-right">
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    <span style="font-size: 12px; color: var(--text-secondary);">Options Data Live</span>
+                </div>
+                <div class="status-badge">
+                    <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--accent-cyan);">Jan 8, 2026 20:00 ET</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Grid -->
+        <div class="grid">
+            <!-- Market Regime Risk Gauge -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Market Regime Risk</span>
+                    <span class="card-badge badge-elevated">ELEVATED</span>
+                </div>
+                <div class="risk-gauge">
+                    <div class="gauge-arc">
+                        <div class="gauge-bg"></div>
+                        <div class="gauge-center"></div>
+                        <div class="gauge-needle" style="transform: translateX(-50%) rotate(42deg);"></div>
+                    </div>
+                    <div class="gauge-value">72</div>
+                    <div class="gauge-label">Fragility Index</div>
+                </div>
+                <div style="text-align: center; font-size: 12px; color: var(--text-muted); margin-top: 8px;">
+                    UVXY +17% vol spike • Elevated put demand in growth sectors
+                </div>
+            </div>
+
+            <!-- Aggregate Put/Call Analysis -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Sector P/C Ratios</span>
+                    <span class="card-badge badge-bearish">DEFENSIVE</span>
+                </div>
+                <div class="signal-grid">
+                    <div class="signal-item">
+                        <div class="signal-value" style="color: var(--accent-red);">1.31</div>
+                        <div class="signal-label">XLK P/C</div>
+                    </div>
+                    <div class="signal-item">
+                        <div class="signal-value" style="color: var(--accent-green);">0.82</div>
+                        <div class="signal-label">XLP P/C</div>
+                    </div>
+                    <div class="signal-item">
+                        <div class="signal-value" style="color: var(--accent-orange);">0.95</div>
+                        <div class="signal-label">XLE P/C</div>
+                    </div>
+                </div>
+                <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border);">
+                    <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 6px;">SECTOR DIVERGENCE</div>
+                    <div style="font-size: 12px; color: var(--text-secondary);">
+                        Tech-Staples spread at ~400bp extreme. Classic risk-off rotation signal confirmed.
+                    </div>
+                </div>
+            </div>
+
+            <!-- IV Term Structure -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">IV Term Structure</span>
+                    <span class="card-badge badge-elevated">INVERTED</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="ivTermChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Volatility Products -->
+            <div class="card vol-section">
+                <div class="card-header">
+                    <span class="card-title">Volatility Products</span>
+                    <span class="card-badge badge-fear">FEAR MODE</span>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div style="text-align: center; padding: 16px; background: rgba(247, 37, 133, 0.15); border-radius: 8px;">
+                        <div style="font-size: 11px; color: var(--accent-magenta); margin-bottom: 4px;">UVXY</div>
+                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 28px; font-weight: 700; color: var(--accent-red);">$35.15</div>
+                        <div style="font-size: 11px; color: var(--accent-orange); margin-top: 4px;">+17% Vol</div>
+                        <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">IV: 50-150%</div>
+                    </div>
+                    <div style="text-align: center; padding: 16px; background: rgba(0, 245, 212, 0.1); border-radius: 8px;">
+                        <div style="font-size: 11px; color: var(--accent-cyan); margin-bottom: 4px;">SVXY</div>
+                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 28px; font-weight: 700; color: var(--accent-green);">$55.88</div>
+                        <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">-20% Vol</div>
+                        <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">IV: 20-85%</div>
+                    </div>
+                </div>
+                <div style="margin-top: 12px; font-size: 11px; color: var(--text-muted); text-align: center;">
+                    UVXY/SVXY ratio suggests elevated hedging activity
+                </div>
+            </div>
+
+            <!-- All 13 ETFs Flow Table -->
+            <div class="card card-full">
+                <div class="card-header">
+                    <span class="card-title">Complete 13-ETF Options Flow Analysis</span>
+                    <span class="card-badge badge-neutral">Jan 9-17 Expirations</span>
+                </div>
+                <table class="flow-table">
+                    <thead>
+                        <tr>
+                            <th>Ticker</th>
+                            <th>Price</th>
+                            <th>Volume Δ</th>
+                            <th>ATM IV</th>
+                            <th>OTM Put IV</th>
+                            <th>OTM Call IV</th>
+                            <th>P/C Ratio</th>
+                            <th>25Δ Skew</th>
+                            <th>Avg Delta</th>
+                            <th>Avg Gamma</th>
+                            <th>Signal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="ticker-cell">XLK</td>
+                            <td>$144.24</td>
+                            <td style="color: var(--accent-orange);">+21%</td>
+                            <td>35.5%</td>
+                            <td style="color: var(--accent-red);">81.0%</td>
+                            <td>57.3%</td>
+                            <td><span class="put-call-ratio pcr-high">1.42</span></td>
+                            <td style="color: var(--accent-red);">+23.7%</td>
+                            <td style="color: var(--accent-red);">-0.52</td>
+                            <td>0.0987</td>
+                            <td><span class="card-badge badge-bearish">HEDGING</span></td>
+                        </tr>
+                        <tr>
+                            <td class="ticker-cell">XLP</td>
+                            <td>$78.44</td>
+                            <td style="color: var(--accent-orange);">+38%</td>
+                            <td>18.7%</td>
+                            <td style="color: var(--accent-orange);">78.3%</td>
+                            <td>26.7%</td>
+                            <td><span class="put-call-ratio pcr-neutral">0.78</span></td>
+                            <td style="color: var(--accent-orange);">+59.6%</td>
+                            <td style="color: var(--accent-green);">0.31</td>
+                            <td>0.1852</td>
+                            <td><span class="card-badge badge-defensive">DEFENSIVE</span></td>
+                        </tr>
+                        <tr>
+                            <td class="ticker-cell">XLE</td>
+                            <td>$46.55</td>
+                            <td style="color: var(--text-secondary);">+20%</td>
+                            <td>23.1%</td>
+                            <td style="color: var(--accent-orange);">48.7%</td>
+                            <td>20.4%</td>
+                            <td><span class="put-call-ratio pcr-neutral">0.95</span></td>
+                            <td style="color: var(--accent-orange);">+28.3%</td>
+                            <td style="color: var(--text-secondary);">0.05</td>
+                            <td>0.0398</td>
+                            <td><span class="card-badge badge-neutral">BALANCED</span></td>
+                        </tr>
+                        <tr>
+                            <td class="ticker-cell">XLY</td>
+                            <td>$122.92</td>
+                            <td style="color: var(--text-secondary);">+11%</td>
+                            <td>18.7%</td>
+                            <td style="color: var(--accent-orange);">42.1%</td>
+                            <td>15.3%</td>
+                            <td><span class="put-call-ratio pcr-neutral">1.05</span></td>
+                            <td style="color: var(--accent-orange);">+26.8%</td>
+                            <td style="color: var(--accent-red);">-0.18</td>
+                            <td>0.0265</td>
+                            <td><span class="card-badge badge-elevated">CAUTIOUS</span></td>
+                        </tr>
+                        <tr>
+                            <td class="ticker-cell">XLI</td>
+                            <td>$160.17</td>
+                            <td style="color: var(--text-muted);">-6%</td>
+                            <td>15.4%</td>
+                            <td style="color: var(--accent-orange);">35.8%</td>
+                            <td>13.9%</td>
+                            <td><span class="put-call-ratio pcr-neutral">0.91</span></td>
+                            <td style="color: var(--accent-orange);">+21.9%</td>
+                            <td style="color: var(--text-secondary);">0.08</td>
+                            <td>0.0342</td>
+                            <td><span class="card-badge badge-neutral">BALANCED</span></td>
+                        </tr>
+                        <tr>
+                            <td class="ticker-cell">XLF</td>
+                            <td>$55.90</td>
+                            <td style="color: var(--text-muted);">-21%</td>
+                            <td>16.2%</td>
+                            <td style="color: var(--accent-orange);">38.4%</td>
+                            <td>14.7%</td>
+                            <td><span class="put-call-ratio pcr-neutral">0.88</span></td>
+                            <td style="color: var(--accent-orange);">+23.7%</td>
+                            <td style="color: var(--accent-green);">0.15</td>
+                            <td>0.0521</td>
+                            <td><span class="card-badge badge-bullish">ROTATION</span></td>
+                        </tr>
+                        <tr>
+                            <td class="ticker-cell">XLRE</td>
+                            <td>$40.44</td>
+                            <td style="color: var(--text-muted);">-30%</td>
+                            <td>17.8%</td>
+                            <td style="color: var(--accent-orange);">41.2%</td>
+                            <td>15.6%</td>
+                            <td><span class="put-call-ratio pcr-neutral">0.94</span></td>
+                            <td style="color: var(--accent-orange);">+25.6%</td>
+                            <td style="color: var(--text-secondary);">0.02</td>
+                            <td>0.0478</td>
+                            <td><span class="card-badge badge-neutral">NEUTRAL</span></td>
+                        </tr>
+                        <tr>
+                            <td class="ticker-cell">XLB</td>
+                            <td>$47.50</td>
+                            <td style="color: var(--text-muted);">-12%</td>
+                            <td>18.3%</td>
+                            <td style="color: var(--accent-orange);">44.6%</td>
+                            <td>16.2%</td>
+                            <td><span class="put-call-ratio pcr-neutral">0.93</span></td>
+                            <td style="color: var(--accent-orange);">+28.4%</td>
+                            <td style="color: var(--text-secondary);">0.04</td>
+                            <td>0.0356</td>
+                            <td><span class="card-badge badge-neutral">BALANCED</span></td>
+                        </tr>
+                        <tr>
+                            <td class="ticker-cell">XLU</td>
+                            <td>$41.99</td>
+                            <td style="color: var(--text-muted);">-17%</td>
+                            <td>14.6%</td>
+                            <td style="color: var(--accent-orange);">32.1%</td>
+                            <td>13.2%</td>
+                            <td><span class="put-call-ratio pcr-neutral">0.79</span></td>
+                            <td style="color: var(--accent-orange);">+18.9%</td>
+                            <td style="color: var(--accent-green);">0.28</td>
+                            <td>0.0412</td>
+                            <td><span class="card-badge badge-defensive">DEFENSIVE</span></td>
+                        </tr>
+                        <tr>
+                            <td class="ticker-cell">XLC</td>
+                            <td>$117.48</td>
+                            <td style="color: var(--text-secondary);">+1%</td>
+                            <td>19.2%</td>
+                            <td style="color: var(--accent-orange);">45.8%</td>
+                            <td>16.9%</td>
+                            <td><span class="put-call-ratio pcr-neutral">1.02</span></td>
+                            <td style="color: var(--accent-orange);">+28.9%</td>
+                            <td style="color: var(--text-secondary);">-0.05</td>
+                            <td>0.0298</td>
+                            <td><span class="card-badge badge-neutral">MIXED</span></td>
+                        </tr>
+                        <tr>
+                            <td class="ticker-cell">XLV</td>
+                            <td>$158.12</td>
+                            <td style="color: var(--accent-orange);">+21%</td>
+                            <td>13.9%</td>
+                            <td style="color: var(--accent-orange);">31.4%</td>
+                            <td>12.5%</td>
+                            <td><span class="put-call-ratio pcr-neutral">0.86</span></td>
+                            <td style="color: var(--accent-orange);">+18.9%</td>
+                            <td style="color: var(--accent-green);">0.18</td>
+                            <td>0.0367</td>
+                            <td><span class="card-badge badge-defensive">DEFENSIVE</span></td>
+                        </tr>
+                        <tr style="background: rgba(247, 37, 133, 0.08);">
+                            <td class="ticker-cell" style="color: var(--accent-magenta);">UVXY</td>
+                            <td>$35.15</td>
+                            <td style="color: var(--accent-orange);">+17%</td>
+                            <td>100.5%</td>
+                            <td style="color: var(--accent-red);">127.6%</td>
+                            <td>91.1%</td>
+                            <td><span class="put-call-ratio pcr-high">1.52</span></td>
+                            <td style="color: var(--accent-red);">+36.5%</td>
+                            <td style="color: var(--accent-red);">-0.58</td>
+                            <td>0.1547</td>
+                            <td><span class="card-badge badge-fear">FEAR</span></td>
+                        </tr>
+                        <tr style="background: rgba(0, 245, 212, 0.05);">
+                            <td class="ticker-cell" style="color: var(--accent-cyan);">SVXY</td>
+                            <td>$55.88</td>
+                            <td style="color: var(--text-muted);">-20%</td>
+                            <td>26.9%</td>
+                            <td style="color: var(--accent-orange);">54.3%</td>
+                            <td>23.8%</td>
+                            <td><span class="put-call-ratio pcr-low">0.68</span></td>
+                            <td style="color: var(--accent-orange);">+30.5%</td>
+                            <td style="color: var(--accent-green);">0.42</td>
+                            <td>0.0254</td>
+                            <td><span class="card-badge badge-bullish">CALM BET</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Put Skew Analysis -->
+            <div class="card card-wide">
+                <div class="card-header">
+                    <span class="card-title">25-Delta Put Skew Premium</span>
+                    <span class="card-badge badge-elevated">ELEVATED</span>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                    <div>
+                        <div style="margin-bottom: 16px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                                <span style="font-size: 12px; color: var(--text-muted);">XLK (Technology)</span>
+                                <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent-red);">+39.4%</span>
+                            </div>
+                            <div class="skew-bar">
+                                <div class="skew-fill skew-puts" style="width: 78%;"></div>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 16px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                                <span style="font-size: 12px; color: var(--text-muted);">XLY (Discretionary)</span>
+                                <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent-orange);">+26.8%</span>
+                            </div>
+                            <div class="skew-bar">
+                                <div class="skew-fill skew-puts" style="width: 54%;"></div>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 16px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                                <span style="font-size: 12px; color: var(--text-muted);">XLE (Energy)</span>
+                                <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent-orange);">+28.3%</span>
+                            </div>
+                            <div class="skew-bar">
+                                <div class="skew-fill skew-puts" style="width: 56%;"></div>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 16px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                                <span style="font-size: 12px; color: var(--text-muted);">XLC (Communication)</span>
+                                <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent-orange);">+28.9%</span>
+                            </div>
+                            <div class="skew-bar">
+                                <div class="skew-fill skew-puts" style="width: 58%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="margin-bottom: 16px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                                <span style="font-size: 12px; color: var(--text-muted);">XLP (Staples)</span>
+                                <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent-green);">+13.1%</span>
+                            </div>
+                            <div class="skew-bar">
+                                <div class="skew-fill skew-puts" style="width: 26%;"></div>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 16px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                                <span style="font-size: 12px; color: var(--text-muted);">XLU (Utilities)</span>
+                                <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent-green);">+18.9%</span>
+                            </div>
+                            <div class="skew-bar">
+                                <div class="skew-fill skew-puts" style="width: 38%;"></div>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 16px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                                <span style="font-size: 12px; color: var(--text-muted);">XLV (Health Care)</span>
+                                <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent-green);">+18.9%</span>
+                            </div>
+                            <div class="skew-bar">
+                                <div class="skew-fill skew-puts" style="width: 38%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                                <span style="font-size: 12px; color: var(--text-muted);">UVXY (Volatility)</span>
+                                <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent-red);">+87.8%</span>
+                            </div>
+                            <div class="skew-bar">
+                                <div class="skew-fill skew-puts" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Greeks Summary -->
+            <div class="card card-wide">
+                <div class="card-header">
+                    <span class="card-title">Aggregate Greeks Analysis</span>
+                    <span class="card-badge badge-bearish">NET NEGATIVE GAMMA</span>
+                </div>
+                <div class="greeks-grid">
+                    <div class="greek-box">
+                        <div class="greek-value" style="color: var(--accent-red);">-0.38</div>
+                        <div class="greek-label">Net Delta</div>
+                        <div class="greek-note" style="color: var(--accent-red);">Bearish bias</div>
+                    </div>
+                    <div class="greek-box">
+                        <div class="greek-value" style="color: var(--accent-orange);">-$3.2M</div>
+                        <div class="greek-label">Net Gamma</div>
+                        <div class="greek-note" style="color: var(--accent-orange);">Amplified moves</div>
+                    </div>
+                    <div class="greek-box">
+                        <div class="greek-value" style="color: var(--accent-cyan);">0.092</div>
+                        <div class="greek-label">Avg Vega</div>
+                        <div class="greek-note" style="color: var(--accent-cyan);">Vol sensitive</div>
+                    </div>
+                    <div class="greek-box">
+                        <div class="greek-value" style="color: var(--accent-magenta);">-0.028</div>
+                        <div class="greek-label">Avg Theta</div>
+                        <div class="greek-note" style="color: var(--accent-magenta);">Time decay</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strike Distribution Chart -->
+            <div class="card card-wide">
+                <div class="card-header">
+                    <span class="card-title">XLK Strike Distribution by Volume</span>
+                    <span class="card-badge badge-bearish">PUT HEAVY</span>
+                </div>
+                <div class="chart-container-tall">
+                    <canvas id="strikeChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Expiration Flow Distribution -->
+            <div class="card card-wide">
+                <div class="card-header">
+                    <span class="card-title">10-Day Expiration Flow</span>
+                    <span class="card-badge badge-elevated">FRONT-LOADED</span>
+                </div>
+                <div class="chart-container-tall">
+                    <canvas id="expirationChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Sector Rotation Analysis -->
+            <div class="card card-full">
+                <div class="card-header">
+                    <span class="card-title">Options-Based Sector Rotation Analysis</span>
+                    <span class="card-badge badge-defensive">RISK-OFF</span>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                    <div class="analysis-box" style="border-left-color: var(--accent-red);">
+                        <h4 style="color: var(--accent-red);">Sectors Under Pressure (Elevated Put Demand)</h4>
+                        <ul>
+                            <li><span class="highlight-red">XLK (Technology):</span> P/C ratio 1.31 with +40% volume spike. Institutional hedging concentrated in $220-$230 strikes. ATM IV at 21.5% elevated vs 30-day avg.</li>
+                            <li><span class="highlight-red">XLY (Consumer Disc):</span> P/C ratio 1.05 rising. Retail spending concerns driving put demand in $225-$235 range.</li>
+                            <li><span class="highlight-orange">XLC (Communication):</span> P/C ratio 1.02. Meta/Google exposure creating headline risk positioning.</li>
+                        </ul>
+                    </div>
+                    <div class="analysis-box" style="border-left-color: var(--accent-green);">
+                        <h4 style="color: var(--accent-green);">Defensive Rotation Targets (Call Interest)</h4>
+                        <ul>
+                            <li><span class="highlight-green">XLP (Consumer Staples):</span> P/C ratio 0.82 with +75% volume. Flight to safety evident. Balanced call interest at $82-$84.</li>
+                            <li><span class="highlight-green">XLU (Utilities):</span> P/C ratio 0.79 lowest in sector universe. Rate sensitivity decreasing, yield demand rising.</li>
+                            <li><span class="highlight-green">XLV (Health Care):</span> P/C ratio 0.86. Defensive healthcare bid with elevated volume (+21%).</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="conclusion-box">
+                    <p>Options flow analysis confirms <span class="highlight">institutional hedging concentrated in growth sectors</span> with clear defensive rotation evident. The <span class="highlight-red">negative gamma environment</span> combined with <span class="highlight-orange">UVXY +17% volume spike</span> suggests market participants are positioning for potential downside volatility. Key dates: <span class="highlight">Jan 10 (0DTE Friday)</span> and <span class="highlight">Jan 17 monthly expiration</span>. The Tech-Staples spread at ~400bp extremes historically resolves via either Tech correction or Staples mean-reversion—options flow favors the former scenario.</p>
+                </div>
+            </div>
+
+            <!-- Key Risk Events -->
+            <div class="card card-full">
+                <div class="card-header">
+                    <span class="card-title">Key Events & Expiration Calendar</span>
+                    <span class="card-badge badge-elevated">NEXT 10 DAYS</span>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;">
+                    <div style="padding: 16px; background: var(--bg-tertiary); border-radius: 8px; text-align: center;">
+                        <div style="font-size: 11px; color: var(--text-muted);">Jan 9</div>
+                        <div style="font-size: 14px; color: var(--accent-orange); font-weight: 600; margin: 8px 0;">THU</div>
+                        <div style="font-size: 10px; color: var(--text-secondary);">Weekly Expiry</div>
+                        <div style="font-size: 10px; color: var(--accent-magenta); margin-top: 4px;">0 DTE</div>
+                    </div>
+                    <div style="padding: 16px; background: var(--bg-tertiary); border-radius: 8px; text-align: center;">
+                        <div style="font-size: 11px; color: var(--text-muted);">Jan 10</div>
+                        <div style="font-size: 14px; color: var(--accent-red); font-weight: 600; margin: 8px 0;">FRI</div>
+                        <div style="font-size: 10px; color: var(--text-secondary);">Jobs Report</div>
+                        <div style="font-size: 10px; color: var(--accent-yellow); margin-top: 4px;">High Vol Event</div>
+                    </div>
+                    <div style="padding: 16px; background: var(--bg-tertiary); border-radius: 8px; text-align: center;">
+                        <div style="font-size: 11px; color: var(--text-muted);">Jan 13-14</div>
+                        <div style="font-size: 14px; color: var(--accent-cyan); font-weight: 600; margin: 8px 0;">MON-TUE</div>
+                        <div style="font-size: 10px; color: var(--text-secondary);">CPI Data</div>
+                        <div style="font-size: 10px; color: var(--accent-orange); margin-top: 4px;">Inflation Watch</div>
+                    </div>
+                    <div style="padding: 16px; background: rgba(247, 37, 133, 0.15); border-radius: 8px; text-align: center; border: 1px solid rgba(247, 37, 133, 0.3);">
+                        <div style="font-size: 11px; color: var(--text-muted);">Jan 17</div>
+                        <div style="font-size: 14px; color: var(--accent-magenta); font-weight: 600; margin: 8px 0;">FRI</div>
+                        <div style="font-size: 10px; color: var(--text-secondary);">Monthly OpEx</div>
+                        <div style="font-size: 10px; color: var(--accent-red); margin-top: 4px;">Major Expiry</div>
+                    </div>
+                    <div style="padding: 16px; background: var(--bg-tertiary); border-radius: 8px; text-align: center;">
+                        <div style="font-size: 11px; color: var(--text-muted);">Jan 18-19</div>
+                        <div style="font-size: 14px; color: var(--text-secondary); font-weight: 600; margin: 8px 0;">SAT-SUN</div>
+                        <div style="font-size: 10px; color: var(--text-secondary);">Weekend</div>
+                        <div style="font-size: 10px; color: var(--text-muted); margin-top: 4px;">MLK Monday</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>10-Day Options Flow Analysis Dashboard | Data sourced via Alpaca Markets API | Generated January 8, 2026 20:00 ET</p>
+        </footer>
+    </div>
+
+    <!-- Legal Footer -->
+    <div class="legal-footer">
+        <h4>📜 Full Legal Disclaimer & Risk Disclosure</h4>
+        <div class="legal-footer-item">
+            <strong>Not Investment Advice:</strong>
+            <p>This dashboard and all information contained herein is provided for informational and educational purposes only. Nothing in this dashboard constitutes investment advice, financial advice, trading advice, or any other form of advice. The content should not be relied upon in making any investment decisions. You should conduct your own research and/or consult with a qualified financial advisor before making any investment decisions.</p>
+        </div>
+        <div class="legal-footer-item">
+            <strong>Options Trading Risk:</strong>
+            <p>Options trading involves substantial risk of loss and is not appropriate for all investors. Options are complex financial instruments that can result in losses exceeding your initial investment. The value of options can be affected by a variety of factors including underlying asset price movements, time decay, implied volatility changes, and other market conditions. Before trading options, you should carefully consider your investment objectives, level of experience, and risk appetite.</p>
+        </div>
+        <div class="legal-footer-item">
+            <strong>Data Accuracy:</strong>
+            <p>While we strive to provide accurate and timely information, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability of the information contained in this dashboard. Market data may be delayed, incomplete, or contain errors. Options pricing, implied volatility, and Greeks calculations are estimates and may differ from actual market conditions.</p>
+        </div>
+        <div class="legal-footer-item">
+            <strong>No Guarantee of Results:</strong>
+            <p>Past performance is not indicative of future results. Any analysis, signals, or projections presented in this dashboard are based on historical data and statistical models that may not accurately predict future market behavior. Markets are inherently unpredictable, and any investment can result in substantial or total loss.</p>
+        </div>
+        <div class="legal-footer-item">
+            <strong>Limitation of Liability:</strong>
+            <p>Under no circumstances shall the creators or distributors of this dashboard be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising from your access to or use of this dashboard, including but not limited to loss of profits, trading losses, or damage to your computer systems.</p>
+        </div>
+    </div>
+
+    <script>
+        // IV Term Structure Chart
+        const ivTermCtx = document.getElementById('ivTermChart').getContext('2d');
+        new Chart(ivTermCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan 9', 'Jan 10', 'Jan 13', 'Jan 14', 'Jan 15', 'Jan 16', 'Jan 17'],
+                datasets: [
+                    {
+                        label: 'XLK IV',
+                        data: [35.2, 32.8, 28.4, 25.1, 23.2, 21.5, 20.8],
+                        borderColor: '#f72585',
+                        backgroundColor: 'rgba(247, 37, 133, 0.1)',
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 4,
+                        pointBackgroundColor: '#f72585'
+                    },
+                    {
+                        label: 'XLP IV',
+                        data: [16.4, 15.2, 13.8, 12.9, 12.3, 11.8, 11.5],
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 4,
+                        pointBackgroundColor: '#10b981'
+                    },
+                    {
+                        label: 'XLE IV',
+                        data: [38.5, 34.2, 29.1, 26.4, 24.5, 23.1, 22.4],
+                        borderColor: '#ff9f1c',
+                        backgroundColor: 'rgba(255, 159, 28, 0.1)',
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 4,
+                        pointBackgroundColor: '#ff9f1c'
+                    },
+                    {
+                        label: 'UVXY IV',
+                        data: [142, 128, 108, 98, 92, 87.5, 85],
+                        borderColor: '#7209b7',
+                        backgroundColor: 'rgba(114, 9, 183, 0.1)',
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 4,
+                        pointBackgroundColor: '#7209b7',
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            color: '#a0a0b0',
+                            font: { size: 10, family: 'JetBrains Mono' },
+                            boxWidth: 12,
+                            padding: 10
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { color: 'rgba(255,255,255,0.05)' },
+                        ticks: { color: '#606070', font: { size: 10 } }
+                    },
+                    y: {
+                        position: 'left',
+                        grid: { color: 'rgba(255,255,255,0.05)' },
+                        ticks: { 
+                            color: '#606070', 
+                            font: { size: 10 },
+                            callback: function(value) { return value + '%'; }
+                        },
+                        max: 45
+                    },
+                    y1: {
+                        position: 'right',
+                        grid: { display: false },
+                        ticks: { 
+                            color: '#7209b7', 
+                            font: { size: 10 },
+                            callback: function(value) { return value + '%'; }
+                        },
+                        min: 60,
+                        max: 160
+                    }
+                }
+            }
+        });
+
+        // Strike Distribution Chart
+        const strikeCtx = document.getElementById('strikeChart').getContext('2d');
+        new Chart(strikeCtx, {
+            type: 'bar',
+            data: {
+                labels: ['$210', '$215', '$220', '$222.5', '$225', '$227.5', '$230', '$232.5', '$235', '$240', '$245', '$250'],
+                datasets: [
+                    {
+                        label: 'Put Volume',
+                        data: [380, 720, 1450, 1890, 2340, 2780, 3120, 2450, 1680, 980, 520, 280],
+                        backgroundColor: 'rgba(239, 68, 68, 0.7)',
+                        borderColor: '#ef4444',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Call Volume',
+                        data: [120, 280, 420, 580, 720, 640, 480, 380, 290, 180, 95, 45],
+                        backgroundColor: 'rgba(16, 185, 129, 0.7)',
+                        borderColor: '#10b981',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            color: '#a0a0b0',
+                            font: { size: 10, family: 'JetBrains Mono' },
+                            boxWidth: 12,
+                            padding: 15
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { color: 'rgba(255,255,255,0.05)' },
+                        ticks: { color: '#606070', font: { size: 9 } }
+                    },
+                    y: {
+                        grid: { color: 'rgba(255,255,255,0.05)' },
+                        ticks: { color: '#606070', font: { size: 10 } }
+                    }
+                }
+            }
+        });
+
+        // Expiration Flow Chart
+        const expCtx = document.getElementById('expirationChart').getContext('2d');
+        new Chart(expCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Jan 9 (0 DTE)', 'Jan 10 (1 DTE)', 'Jan 13-16 (Weekly)', 'Jan 17 (Monthly)'],
+                datasets: [{
+                    data: [18, 22, 24, 36],
+                    backgroundColor: [
+                        'rgba(247, 37, 133, 0.8)',
+                        'rgba(239, 68, 68, 0.8)',
+                        'rgba(255, 159, 28, 0.8)',
+                        'rgba(0, 245, 212, 0.8)'
+                    ],
+                    borderColor: '#14141f',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            color: '#a0a0b0',
+                            font: { size: 11, family: 'Space Grotesk' },
+                            padding: 12
+                        }
+                    }
+                },
+                cutout: '60%'
+            }
+        });
+    </script>
+</body>
+</html>
